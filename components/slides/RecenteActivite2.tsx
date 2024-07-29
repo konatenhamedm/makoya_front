@@ -18,7 +18,7 @@ const RecenteActivite2: React.FC<RecenteActivite2Props> = ({
       <h1 className="font-semibold text-2xl">{firstTitle}</h1>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-        <ActiviteBloc
+        {/* <ActiviteBloc
           image="https://app.requestly.io/delay/1000/https://nextui-docs-v2.vercel.app/images/fruit-4.jpeg"
           titre="Prestataire"
           commentaire="This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
@@ -73,7 +73,7 @@ const RecenteActivite2: React.FC<RecenteActivite2Props> = ({
           note={4}
           whatsappNumber="025855578"
           whatsapp={true}
-        />
+        /> */}
 
         {/* Ajoutez les autres ActiviteBloc ici de la même manière */}
 
