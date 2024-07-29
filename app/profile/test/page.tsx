@@ -1,7 +1,5 @@
 "use client";
 
-import Sidebar from "@/components/headers/sideBar";
-
 export default function Page() {
   return (
     <div>

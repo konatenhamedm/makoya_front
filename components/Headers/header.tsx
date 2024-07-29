@@ -58,7 +58,7 @@ function Header() {
           setInitialValues({
             categorie: categoriesData.length > 0 ? categoriesData[0].id : "",
             search: "",
-            ville: villesData.length > 0 ? villesData[0].id : "",
+            ville: "",
           });
         })
         .catch((err) => {

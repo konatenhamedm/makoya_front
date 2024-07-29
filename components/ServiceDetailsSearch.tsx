@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Rating, initTE, Ripple } from "tw-elements";
 import Noter from "./reseaux/Noter";
 import { useRouter } from "next/navigation";
 import ListeLi from "./ListeLi";

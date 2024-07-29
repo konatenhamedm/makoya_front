@@ -2,7 +2,7 @@
 import { Card, Skeleton } from "@nextui-org/react";
 import React from "react";
 
-export default function Skeletons({ number }) {
+export default function Skeletons({ number }: { number: number }): JSX.Element {
   return (
     <>
       {Array(number)

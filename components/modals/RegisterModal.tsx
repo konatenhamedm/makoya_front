@@ -26,34 +26,34 @@ const RegisterModal = () => {
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [image, setImage] = useState(null);
-  const [imageInput, setImageInput] = useState("");
+  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+  const [imageInput, setImageInput] = useState<File | null>(null);
 
   const [civilite, setCivilite] = useState<Civilite[]>([]);
   const [quartiers, setQuartiers] = useState<Quartier[]>([]);
-  const [latitude, setLatitude] = useState<number | any>();
-  const [longitude, setLongitude] = useState<number | any>();
-  const hiddenFileInput = useRef(null);
+  const [latitude, setLatitude] = useState<number | undefined>();
+  const [longitude, setLongitude] = useState<number | undefined>();
+  const hiddenFileInput = useRef<HTMLInputElement | null>(null); // Specify the type here
 
-  const handleClick = (event: any) => {
+  const handleClick = () => {
     if (hiddenFileInput.current) {
       hiddenFileInput.current.click();
     }
   };
 
-  const handleImage = (e: any) => {
-    //alert("");
-    const file = e.target.files[0];
-    setImageInput(file);
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageInput(file);
 
-    const fileReader = new FileReader();
+      const fileReader = new FileReader();
 
-    fileReader.onload = (e: any) => {
-      //console.log(e.target.result);
-      setImage(e.target.result);
-    };
+      fileReader.onload = (e) => {
+        setImage(e.target?.result ?? null);
+      };
 
-    fileReader.readAsDataURL(file);
+      fileReader.readAsDataURL(file);
+    }
   };
 
   useEffect(() => {
@@ -61,21 +61,16 @@ const RegisterModal = () => {
       .get("/general/only/quartier")
       .then((res) => setQuartiers(res.data.data))
       .catch((err) => {
-        //setError(err.message);
+        // Handle error
       });
 
     if ("geolocation" in navigator) {
-      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition((position) => {
-        /*  const { latitude, longitude } = coords;
-          setLocation({ latitude, longitude }); */
-
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
-        //setData(coords);
       });
     }
-  }, [quartiers, latitude, longitude]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -87,20 +82,14 @@ const RegisterModal = () => {
       confirm_password: "",
       logo: "",
       situation: "",
-      // longitude: longitude,
-      //latitude: latitude,
     },
-
     validationSchema: Yup.object({
       email: Yup.string()
         .email("Invalide email")
-        .required("Email est un champ requis")
-        .email(),
+        .required("Email est un champ requis"),
       password: Yup.string().required("Password est un champ requis"),
       contact: Yup.string().required("Contact est un champ requis"),
       quartier: Yup.string().required("Quartier est un champ requis"),
-      // longitude: Yup.number(),
-      // latitude: Yup.number(),
       situation: Yup.array(),
       logo: Yup.string(),
       denominationSociale: Yup.string().required(
@@ -114,10 +103,7 @@ const RegisterModal = () => {
           "Les mots de passe doivent correspondre"
         ),
     }),
-
     onSubmit: async (values) => {
-      //  alert(latitude);
-      // alert(latitude);
       const data = new FormData();
 
       data.append("email", values.email);
@@ -126,24 +112,22 @@ const RegisterModal = () => {
       data.append("contact", values.contact);
       data.append("quartier", values.quartier);
       data.append("situation", values.situation);
-      data.append("logo", imageInput);
-      data.append("longitude", longitude);
-      data.append("latitude", latitude);
-
-      //alert(values.situation);
-
-      /*   const data = {
-        ...values,
-        latitude: latitude,
-        longitude: longitude,
-      }; */
+      if (imageInput) {
+        data.append("logo", imageInput);
+      }
+      if (longitude !== undefined) {
+        data.append("longitude", longitude.toString());
+      }
+      if (latitude !== undefined) {
+        data.append("latitude", latitude.toString());
+      }
 
       setIsLoading(true);
 
       await axiosAuthapiFormdata
         .post("/prestataire/create", data)
         .then((res) => {
-          if (res.data.status == 300) {
+          if (res.data.status === 300) {
             setMessage(res.data.message);
             setIsLoading(false);
           } else {
@@ -222,7 +206,7 @@ const RegisterModal = () => {
                   objectFit: "cover",
                   border: "4px solid  blue ",
                 }}
-                src={image}
+                src={image as string}
                 alt=""
               />
             ) : (

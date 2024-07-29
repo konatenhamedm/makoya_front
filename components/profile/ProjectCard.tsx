@@ -1,9 +1,9 @@
 import { FunctionComponent, useState } from "react";
-import { IProject } from "../../types";
 import Image from "next/image";
 import { AiFillGithub, AiFillProject } from "react-icons/ai";
 // TODO Github
 import { MdClose } from "react-icons/md";
+import { IProject } from "@/app/profile/types";
 
 const ProjectCard: FunctionComponent<{ project: IProject }> = ({
   project: {

@@ -1,5 +1,5 @@
+import { Category } from "@/app/profile/types";
 import { FunctionComponent } from "react";
-import { Category } from "../../types";
 
 const NavItem: FunctionComponent<{
   value: Category | "all";

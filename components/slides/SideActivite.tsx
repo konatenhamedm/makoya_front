@@ -5,16 +5,6 @@ import React, { useEffect } from "react";
 function SideActivite() {
   const [liked, setLiked] = React.useState(false);
 
-  /* const icon = document.querySelectorAll('#events-example [data-te-rating-icon-ref]');
-
-icon.forEach((el) => {
-  el.addEventListener('onHover.te.rating', (e) => {
-    console.log('onHover', e);
-  });
-  el.addEventListener('onSelect.te.rating', (e) => {
-    console.log('onSelect', e);
-  });
-}) */
   return (
     <div className="flex  md:grid-rows-3 grid-flow-col gap-4  bg-white shadow-md rounded-lg w-full dark:bg-gray-800 dark:border-gray-700  hover:bg-gray-100">
       <div className="row-span-3 col-span-1">
