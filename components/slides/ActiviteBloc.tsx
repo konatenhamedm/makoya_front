@@ -6,16 +6,15 @@ import Noter from "../reseaux/Noter";
 interface ActiviteBlocProps {
   image: string;
   titre: string;
-  serviceVille: string;
-  serviceQuartier: string;
+  situationPrestataire: string;
+  situationUtilisateur: string;
   commentaire: string;
   profil: string;
-  ville: string;
-  quartier: string;
-  nom: string;
+  nomUtilisateur: string;
   note: number;
   whatsappNumber: string;
   whatsapp: boolean;
+  serviceLibelle: string;
 }
 
 const ActiviteBloc: React.FC<ActiviteBlocProps> = ({
@@ -23,26 +22,34 @@ const ActiviteBloc: React.FC<ActiviteBlocProps> = ({
   titre,
   commentaire,
   profil,
-  nom,
-  serviceVille,
-  serviceQuartier,
-  ville,
-  quartier,
+  nomUtilisateur,
+  situationPrestataire,
+  situationUtilisateur,
   note,
   whatsappNumber,
   whatsapp,
+  serviceLibelle,
 }) => {
   const openWhatsApp = () => {
     const message = "Bonjour, je suis intéressé par votre service.";
     const whatsappUrl = `https://wa.me/${"0142325260"}?text=${encodeURIComponent(
       message
     )}`;
-    window.open(whatsappUrl, "_blank");
+    if (typeof window !== "undefined") {
+      window.open(whatsappUrl, "_blank");
+    }
   };
 
   return (
     <div className="max-w-full bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
-      <h3 className="mb-3 text-xl font-bold text-indigo-600">{titre}</h3>
+      <h3>
+        <span className="mb-3 text-xl font-bold text-indigo-600">{titre}</span>
+        <span className="mb-3 text-xl font-bold text-indigo-600">{"-"}</span>
+        <span className="mb-3 text-md font-bold text-indigo-600">
+          {" "}
+          {situationPrestataire}
+        </span>
+      </h3>
       <div className="relative">
         {/* <Image
           width={540}
@@ -66,7 +73,7 @@ const ActiviteBloc: React.FC<ActiviteBlocProps> = ({
           className="absolute top-0 right-0 bg-yellow-300 text-white font-semibold py-1 px-3 rounded-tr-lg rounded-bl-lg"
           style={{ zIndex: 99999 }}
         >
-          {serviceQuartier}
+          {serviceLibelle}
         </p>
       </div>
       <div className="p-1">
@@ -78,8 +85,8 @@ const ActiviteBloc: React.FC<ActiviteBlocProps> = ({
           />
           <div className="flex flex-col">
             <p className="text-xs text-black">
-              {"statut: "}
-              {ville == "Oui" ? (
+              {/* {": "} */}
+              {/*  {ville == "Oui" ? (
                 <span className="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-green-500 rounded-full">
                   Certifié
                 </span>
@@ -87,9 +94,10 @@ const ActiviteBloc: React.FC<ActiviteBlocProps> = ({
                 <span className="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
                   Non certifié
                 </span>
-              )}
+              )} */}
+              {nomUtilisateur}
             </p>
-            <p className="text-xs text-black">{`Situation : ${serviceVille}`}</p>
+            <p className="text-xs text-black">{`Habite : ${situationUtilisateur}`}</p>
           </div>
           <Noter note={note} />
         </div>

@@ -151,11 +151,11 @@ const CardBlocServiceDetails: React.FC<CardBlocServiceDetailsProps> = ({
             </button>
             <button
               type="button"
-              className="w-full md:w-1/3 inline-flex rounded bg-green-600 px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-green-700 focus:bg-green-700 active:bg-green-800"
+              className="w-full md:w-1/3 inline-flex rounded bg-green-600 px-6 pb-2 pt-2.5 text-center text-lg font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-green-700 focus:bg-green-700 active:bg-green-800"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="mr-2 h-3.5 w-3.5 text-white"
+                className="mr-2 h-3.5 w-3.5 text-white mt-[7px]"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

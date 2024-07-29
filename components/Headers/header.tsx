@@ -81,8 +81,10 @@ function Header() {
     validationSchema: Yup.object({}),
 
     onSubmit: async (values) => {
-      const url = `/recherche?categorie=${values.categorie}&search=${values.search}&ville=${values.ville}`;
-      window.location.href = url;
+      if (typeof window !== "undefined") {
+        const url = `/recherche?categorie=${values.categorie}&search=${values.search}&ville=${values.ville}`;
+        window.location.href = url;
+      }
     },
   });
   const { errors, touched, values, handleChange, handleSubmit } = formik;

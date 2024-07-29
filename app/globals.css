@@ -22,16 +22,7 @@
   z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments si nécessaire */
   background-color: white; /* Pour éviter que le fond soit transparent lors du défilement */
 }
-.sticky-top2 {
-  position: sticky;
-  top: 210px; /* Fixe la partie droite à 189px du haut de la fenêtre */
-  z-index: 10; /* Assurez-vous que z-index est suffisamment élevé pour empiler au-dessus du contenu défilant */
-}
 
-.scrollable-left {
-  overflow-y: auto; /* Active le défilement vertical uniquement si nécessaire */
-  max-height: calc(100vh - 189px); /* Limite la hauteur maximale de la partie gauche à la hauteur de la fenêtre moins 189px (hauteur fixe de la partie droite) */
-}
 /* .rec.rec-arrow:disabled {
   visibility: hidden;
 }

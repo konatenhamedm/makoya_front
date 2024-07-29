@@ -119,7 +119,11 @@ const Sidebar = () => {
 
       <button
         className="w-11/12 px-5 py-2 text-white bg-black rounded-lg cursor-pointer bg-gradient-to-r from-green to-blue-500 hover:scale-105 focus:outline-none"
-        onClick={() => window.open("mailto:code.sumax@gmail.com")}
+        onClick={() => {
+          if (typeof window !== "undefined") {
+            window.open("mailto:code.sumax@gmail.com");
+          }
+        }}
       >
         Envoye nous email
       </button>

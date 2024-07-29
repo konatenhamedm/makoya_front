@@ -21,7 +21,7 @@ const SideSlide: React.FC<SideSlideProps> = ({ titre, desc, image }) => {
         </CardHeader>
         <Image
           width={100}
-          height={100}
+          height={1000}
           removeWrapper
           alt="Card example background"
           className={`

@@ -30,7 +30,7 @@ export default function Home() {
         secondTitle="Organisateurs d'évènements"
       />
       <RecenteActivite firstTitle="Retours d'experiences" etat={true} />
-      <RecenteActivite2 firstTitle="" etat={false} />
+      {/* <RecenteActivite2 firstTitle="" etat={false} /> */}
       <Publicite />
 
       <Banner />

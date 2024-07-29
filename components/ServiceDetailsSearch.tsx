@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Noter from "./reseaux/Noter";
 import { useRouter } from "next/navigation";
 import ListeLi from "./ListeLi";
-import { Button } from "@nextui-org/react";
 import { HeartIcon } from "./HeartIcon";
 import { Details } from "@/modeles/Details";
 import { BASE_SITE, axiosAuthapi } from "@/lib/axios";

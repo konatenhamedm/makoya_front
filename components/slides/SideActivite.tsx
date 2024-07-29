@@ -1,5 +1,6 @@
 "use client";
-import { Button, Card, CardBody, Image, Progress } from "@nextui-org/react";
+import Image from "next/image";
+/* import { Button, Card, CardBody, Image, Progress } from "@nextui-org/react"; */
 import React, { useEffect } from "react";
 
 function SideActivite() {
@@ -10,7 +11,7 @@ function SideActivite() {
       <div className="row-span-3 col-span-1">
         {" "}
         <a href="#">
-          <Image
+          <img
             className="rounded-xl p-2  transition duration-300 ease-in-out hover:scale-y-90 "
             src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80"
             alt="product image"

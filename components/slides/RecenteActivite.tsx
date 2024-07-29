@@ -8,6 +8,7 @@ import SkeletonsCommentaire from "../skeletons/SkeletonsCommentaire";
 import Image from "next/image";
 import ListeLi from "../ListeLi";
 import ActiviteBloc from "./ActiviteBloc";
+import { Commentaire } from "@/modeles/Commentaire";
 
 interface RecenteActiviteProps {
   firstTitle: string;
@@ -18,20 +19,17 @@ const RecenteActivite: React.FC<RecenteActiviteProps> = ({
   firstTitle,
   etat,
 }) => {
-  const [services, setServices] = useState<Details[]>([]);
+  const [services, setServices] = useState<Commentaire[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>(undefined);
 
   const fetchServices = () => {
     setLoading(true);
     axiosAuthapi
-      .get("/general/retour_experience")
+      .get("/general/retour_experience2")
       .then((res) => {
-        setServices(res.data.data.services);
-        localStorage.setItem(
-          "services",
-          JSON.stringify(res.data.data.services)
-        );
+        setServices(res.data.data);
+        localStorage.setItem("services", JSON.stringify(res.data.data));
         setLoading(false);
       })
       .catch((err) => {
@@ -106,17 +104,20 @@ const RecenteActivite: React.FC<RecenteActiviteProps> = ({
             {services.map((service) => (
               <ActiviteBloc
                 key={service.id}
-                image={`${BASE_SITE}${service.image.fileNamePath}`}
-                titre={service.prestataire.denominationSociale}
+                image={`${BASE_SITE}${service.service.image.fullName}`}
+                titre={service.service.prestataire.denominationSociale}
                 commentaire={service.message}
-                profil={`${BASE_SITE}${service.image.fileNamePath}`}
-                nom="Konate Hamed"
-                serviceVille={service.prestataire.quartier}
-                serviceQuartier={service.service.libelle}
-                ville={service.prestataire.statut}
-                quartier={service.prestataire.quartier}
-                note={service.note}
-                whatsappNumber={service.prestataire.contactPrincipal}
+                profil={`${BASE_SITE}${service.utilisateur.photo.fullName}`}
+                nomUtilisateur={service.utilisateur.username}
+                situationPrestataire={
+                  service.service.prestataire.quartier.villeQuartier
+                }
+                serviceLibelle={service.service.service.libelle}
+                situationUtilisateur={
+                  service.utilisateur.quartier.villeQuartier
+                }
+                note={service.note.note}
+                whatsappNumber={service.service.prestataire.contactPrincipal}
                 whatsapp={true}
               />
             ))}

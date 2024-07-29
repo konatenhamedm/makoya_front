@@ -11,6 +11,7 @@ import RegisterModal from "@/components/modals/RegisterModal";
 import LoginModal from "@/components/modals/LoginModal";
 import BoutonTelecharger from "@/components/Boutons/BoutonTelecharger";
 import FooterNew from "@/components/Footers/footerNew";
+import { Suspense } from "react";
 
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
@@ -34,11 +35,13 @@ export default async function RootLayout({
           {/* Utilisation de padding responsive */}
           <RegisterModal />
           <LoginModal />
-          <Providers session={session}>
-            <Header />
-            {children}
-            <FooterNew />
-          </Providers>
+          <Suspense>
+            <Providers session={session}>
+              <Header />
+              {children}
+              <FooterNew />
+            </Providers>
+          </Suspense>
           <div
             id="container-floating"
             className="fixed bottom-0 right-0 p-4 md:p-8 lg:p-12"
