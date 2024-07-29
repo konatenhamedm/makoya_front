@@ -1,0 +1,73 @@
+/* styles/Notifications.module.css */
+.container {
+    padding: 20px;
+  }
+  .notificationItem {
+    /* Styles de base pour chaque carte de notification */
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  
+    /* Ajoutez d'autres styles nécessaires ici */
+  
+    /* Dégradé au survol */
+    background: #ffffff; /* Couleur de fond par défaut */
+  }
+  
+  .notificationItem:hover {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    /* Dégradé de couleur au survol */
+  }
+  
+  
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   /*  height: 100vh; */
+  }
+  
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .notificationList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .notificationItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .notificationContent {
+    flex-grow: 1;
+  }
+  
+  .deleteButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
